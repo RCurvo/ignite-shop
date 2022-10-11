@@ -1,13 +1,26 @@
 import Image from 'next/future/image'
 import { HomeContainer, Product } from '../styles/pages/home'
+
+import { useKeenSlider } from 'keen-slider/react'
+
 import camiseta1 from '../assets/camisetas/Camisa-Maratona 1.png'
 import camiseta2 from '../assets/camisetas/IgniteLab-T-shirt 1.png'
 import camiseta3 from '../assets/camisetas/Igniter-abord-2-t-shirt 1.png'
 
+import 'keen-slider/keen-slider.min.css'
+
 export default function Home() {
+  const [sliderRef] = useKeenSlider({
+    slides: {
+      perView: 3,
+      spacing: 48,
+    }
+  })
+
+
   return (
-    <HomeContainer>
-      <Product>
+    <HomeContainer ref={sliderRef} className='keen-slider'>
+      <Product className='keen-slider__slide'>
         <Image src={camiseta1} alt="" width={520} height={480} />
         <footer>
           <strong>
@@ -18,7 +31,7 @@ export default function Home() {
           </span>
         </footer>
       </Product>
-      <Product>
+      <Product className='keen-slider__slide'>
         <Image src={camiseta2} alt="" width={520} height={480} />
         <footer>
           <strong>
@@ -30,17 +43,28 @@ export default function Home() {
         </footer>
 
       </Product>
-      {/* <Product>
+      <Product className='keen-slider__slide'>
         <Image src={camiseta3} alt="" width={520} height={480} />
         <footer>
           <strong>
             Camiseta
           </strong>
+          <span>
+            R$ 79,90
+          </span>
         </footer>
-        <span>
-          R$ 79,90
-        </span>
-      </Product> */}
+      </Product>
+      <Product className='keen-slider__slide'>
+        <Image src={camiseta3} alt="" width={520} height={480} />
+        <footer>
+          <strong>
+            Camiseta
+          </strong>
+          <span>
+            R$ 79,90
+          </span>
+        </footer>
+      </Product>
     </HomeContainer>
   )
 }
